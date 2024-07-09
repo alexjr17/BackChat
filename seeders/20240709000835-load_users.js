@@ -9,18 +9,18 @@ module.exports = {
 
     await queryInterface.bulkInsert('Users', [
       {
-        name: 'Alex Rodriguez',
-        username: 'Estudiante01',
+        name: 'Julio Rocha',
+        username: 'Julio_profe',
         password: generatePassword,
-        role: 'student',
+        role: 'moderator',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: 'Jane Smith',
-        username: 'Moderador01',
+        name: 'Juan Mercado',
+        username: 'Juan_estudiante',
         password: generatePassword,
-        role: 'moderator',
+        role: 'student',
         createdAt: new Date(),
         updatedAt: new Date()
       }

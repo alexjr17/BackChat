@@ -8,17 +8,17 @@ module.exports = {
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     );
 
-    // Insertar mensajes usando los IDs de los usuarios
+    // tomar id de usaurios existentes
     await queryInterface.bulkInsert('Messages', [
       {
-        content: 'Hello everyone!',
-        userId: users.find(user => user.username === 'Estudiante01').id, // ID del usuario estudiante
+        content: '¡Hola soy el profesor!',
+        userId: users.find(user => user.username === 'Julio_profe').id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        content: 'Welcome to the class.',
-        userId: users.find(user => user.username === 'Moderador01').id, // ID del moderador
+        content: '¡Hola soy el estudiante!',
+        userId: users.find(user => user.username === 'Juan_estudiante').id,
         createdAt: new Date(),
         updatedAt: new Date()
       }

@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
 const router = express.Router();
+const secret_key =  "d8z1p7nhunyw4sj173pj";
 
 // Ruta de login
 router.post('/login', async (req, res) => {
@@ -21,7 +22,7 @@ router.post('/login', async (req, res) => {
     return res.status(400).json({ message: 'Invalid password' });
   }
 
-  const token = jwt.sign({ id: user.id, username: user.username }, 'secret_key', { expiresIn: '1h' });
+  const token = jwt.sign({ id: user.id, username: user.username }, secret_key, { expiresIn: '1h' });
 
   res.json({ token, user: { id: user.id, username: user.username, name: user.name, role: user.role } });
 });
@@ -33,7 +34,7 @@ router.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = await User.create({ username, name, password: hashedPassword, role });
 
-  const token = jwt.sign({ id: newUser.id, username: newUser.username }, 'secret_key', { expiresIn: '1h' });
+  const token = jwt.sign({ id: newUser.id, username: newUser.username }, secret_key, { expiresIn: '1h' });
 
   res.json({ token, user: { id: newUser.id, username: newUser.username, name: newUser.name, role: newUser.role } });
 });

@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const secret = 'your_jwt_secret'; // Reemplaza con tu secreto real
 
-exports.register = async (req, res) => {
+// Registrar un nuevo usuario
+const register = async (req, res) => {
   try {
     const { name, username, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -16,7 +17,8 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+// Iniciar sesión
+const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ where: { username } });
@@ -28,4 +30,9 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};
+
+module.exports = {
+  register,
+  login
 };
