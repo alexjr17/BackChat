@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         name: 'Jane Smith',
-        username: 'Moderador02',
+        username: 'Moderador01',
         password: generatePassword,
         role: 'moderator',
         createdAt: new Date(),
@@ -29,5 +29,9 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('Users', null, {});
+    // Ejecutar TRUNCATE TABLE en lugar de bulkDelete
+    // await queryInterface.sequelize.query('TRUNCATE TABLE "users" RESTART IDENTITY CASCADE;', {
+    //   type: queryInterface.sequelize.QueryTypes.RAW
+    // });
   }
 };

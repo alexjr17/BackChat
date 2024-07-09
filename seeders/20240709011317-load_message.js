@@ -2,16 +2,23 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    // Obtener IDs de los usuarios
+    const users = await queryInterface.sequelize.query(
+      'SELECT id, username FROM Users',
+      { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+
+    // Insertar mensajes usando los IDs de los usuarios
     await queryInterface.bulkInsert('Messages', [
       {
-        content: '¡Hola soy un estudiante!',
-        userId: 1, // ID del estudiante
+        content: 'Hello everyone!',
+        userId: users.find(user => user.username === 'Estudiante01').id, // ID del usuario estudiante
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        content: '¡Hola soy el moderador!',
-        userId: 2, // ID del moderador
+        content: 'Welcome to the class.',
+        userId: users.find(user => user.username === 'Moderador01').id, // ID del moderador
         createdAt: new Date(),
         updatedAt: new Date()
       }
