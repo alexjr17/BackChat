@@ -20,9 +20,14 @@ app.use('/api/chat', chatRoutes);
 
 io.on('connection', (socket) => {
   console.log('New client connected');
-  socket.on('chat message', (msg) => {
+
+  // Emitir mensajes a todos los clientes conectados
+  socket.on('chat message', async (msg) => {
+    // Guardar el mensaje en la base de datos
+    await Message.create(msg);
     io.emit('chat message', msg);
   });
+
   socket.on('disconnect', () => {
     console.log('Client disconnected');
   });

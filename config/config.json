@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": null,
-    "password": null,
-    "database": "live_chat",
+    "username": "root",
+    "password": "root",
+    "database": "live-chat",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
